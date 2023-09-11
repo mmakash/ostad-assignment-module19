@@ -1,12 +1,12 @@
-exports.create = (req,res) =>{
-    res.send("Create portfolio api")
+exports.create = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"Created portfolio api"});
 }
-exports.read = (req,res) =>{
-    res.send("read portfolio api")
+exports.read = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"read portfolio api"});
 }
-exports.delete = (req,res) =>{
-    res.send("delete portfolio api")
+exports.delete = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"delete portfolio api"});
 }
-exports.update = (req,res) =>{
-    res.send("update portfolio api");
+exports.update = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"updated portfolio api"});
 }

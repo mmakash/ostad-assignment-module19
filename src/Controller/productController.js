@@ -1,12 +1,12 @@
-exports.create = (req,res) =>{
-    res.send("Create product api")
+exports.create = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"Created product api"});
 }
-exports.read = (req,res) =>{
-    res.send("read product api")
+exports.read = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"read product api"});
 }
-exports.delete = (req,res) =>{
-    res.send("delete product api")
+exports.delete = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"delete product api"});
 }
-exports.update = (req,res) =>{
-    res.send("update product api");
+exports.update = async(req,res) =>{
+    res.status(200).json({status:"Success",data:"updated product api"});
 }
