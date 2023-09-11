@@ -19,4 +19,8 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 app.use("/api", router);
+// undefined route handling
+app.use("*",(req,res) =>{
+    res.status(404).json({status:"fail",data:"Not found"});
+})
 module.exports = app;
