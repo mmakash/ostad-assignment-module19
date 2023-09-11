@@ -7,35 +7,29 @@ const portfolioController = require("../Controller/portfolioController");
 const messageController = require("../Controller/messageController");
 const commentController = require("../Controller/commentController");
 
-
 router.get("/one",blogController.create);
 router.get("/two",blogController.read);
 router.get("/three",blogController.delete);
 router.get("/four",blogController.update);
 
+router.get("/five",portfolioController.create);
+router.get("/six",portfolioController.read);
+router.get("/seven",portfolioController.delete);
+router.get("/eight",portfolioController.update);
 
-router.get("/seventeen",portfolioController.create);
-router.get("/eighteen",portfolioController.read);
-router.get("/nineteen",portfolioController.delete);
-router.get("/twenty",portfolioController.update);
+router.get("/nine",prodcutController.create);
+router.get("/ten",prodcutController.read);
+router.get("/eleven",prodcutController.delete);
+router.get("/twelve",prodcutController.update);
 
-router.get("/twentyone",prodcutController.create);
-router.get("/twentytwo",prodcutController.read);
-router.get("/twentythree",prodcutController.delete);
-router.get("/twentyfour",prodcutController.update);
+router.get("/thirteen",messageController.create);
+router.get("/fourteen",messageController.read);
+router.get("/fifteen",messageController.delete);
+router.get("/sixteen",messageController.update);
 
-
-
-router.get("/twentynine",messageController.create);
-router.get("/thirty",messageController.read);
-router.get("/thirtyone",messageController.delete);
-router.get("/thirtytwo",messageController.update);
-
-router.get("/thirtythree",commentController.create);
-router.get("/thirtyfour",commentController.read);
-router.get("/thirtyfive",commentController.delete);
-router.get("/thirtysix",commentController.update);
-
-
+router.get("/seventeen",commentController.create);
+router.get("/eighteen",commentController.read);
+router.get("/nineteen",commentController.delete);
+router.get("/twenty",commentController.update);
 
 module.exports = router;
