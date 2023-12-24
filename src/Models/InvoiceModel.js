@@ -1,48 +1,19 @@
-const mongoose = require('mongoose');
+const moongose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-  userID: {
-    type: String,
-    required: true,
-  },
-  payable: {
-    type: Number,
-    required: true,
-  },
-  cus_details: {
-    type: String, 
-    required: true,
-  },
-  ship_details: {
-    type: String, 
-    required: true,
-  },
-  tran_id: {
-    type: String,
-    required: true,
-  },
-  val_id: {
-    type: String,
-    required: true,
-  },
-  payment_status: {
-    type: String,
-    enum: ['pending', 'completed', 'failed'], 
-    default: 'pending',
-  },
-  delivery_status: {
-    type: String,
-    enum: ['pending', 'shipped', 'delivered'],
-    default: 'pending',
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  vat: {
-    type: Number,
-    required: true,
-  },
-});
+const DataSchema = new moongose.Schema({
+    userID:{type: moongose.Schema.Types.ObjectId, required: true},
+    payable:{type: String, required: true},
+    cus_details:{type: String, required: true},
+    ship_details:{type: String, required: true},
+    tran_id:{type: String, required: true},
+    val_id:{type: String, required: true},
+    delivery_status:{type: String, required: true},
+    payment_status:{type: String, required: true},
+    total:{type: String, required: true},
+    vat:{type: String, required: true},
+},
+{timestamps: true, versionKey: false}
+)
 
-module.exports = mongoose.model('invoice', dataSchema);
+const InvoiceModel = moongose.model('invoices', DataSchema);
+module.exports = InvoiceModel;

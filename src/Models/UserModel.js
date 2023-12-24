@@ -1,15 +1,11 @@
-const mongoose = require('mongoose');
+const moongose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  otp: {
-    type: String,
-    required: true,
-  },
-});
+const DataSchema = new moongose.Schema({
+  email: {type: String, required: true, unique: true, lowercase: true},
+  otp: {type: String, required: true}
+},
+{timestamps: true, versionKey: false}
+)
 
-module.exports = mongoose.model('profile', dataSchema);
+const UserModel = moongose.model('users', DataSchema);
+module.exports = UserModel;

@@ -1,12 +1,18 @@
-const mongoose = require("mongoose");
+const moongose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-    brandName:{type:String,required:true},
-    brandImg:{type:String,required:true}
+const DataSchema = new moongose.Schema({
+    brandName: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    brandImg: {
+        type: String,
+        required: true
+    }
 },
-{
-    timestamps:true,
-    versionKey:false
-})
+{timestamps: true, versionKey: false}
+)
 
-module.exports = mongoose.model("brands",dataSchema)
+const BrandModel = moongose.model('brands', DataSchema);
+module.exports = BrandModel;

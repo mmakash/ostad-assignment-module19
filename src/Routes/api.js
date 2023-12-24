@@ -1,29 +1,39 @@
-const express = require("express");
+const express = require('express');
+const ProductController = require('../controller/ProductController');
+const UserController = require('../controller/UserController');
+const WishListController = require('../controller/WishListController');
+const AuthVerification = require('../middlewere/AuthVerification');
+
+
 const router = express.Router();
 
-const userController = require("../Controller/userController");
-const adminController = require("../Controller/adminController");
-const subAdminController = require("../Controller/subAdminController");
-const postController = require("../Controller/postController");
 
-router.get("/one",userController.create);
-router.get("/two",userController.read);
-router.get("/three",userController.delete);
-router.get("/four",userController.update);
+// products
+router.get("/ProductBrandList", ProductController.ProductBrandList);
+router.get("/ProductCategoryList", ProductController.ProductCategoryList);
+router.get("/ProductSliderList", ProductController.ProductSliderList);
+router.get("/ProductListByBrand/:BrandId", ProductController.ProductListByBrand);
+router.get("/ProductListByCategory/:CategoryId", ProductController.ProductListByCategory);
+router.get("/ProductListBySimilar/:CategoryId", ProductController.ProductListBySimilar);
+router.get("/ProductListByKeyword/:keyword", ProductController.ProductListByKeyword);
+router.get("/ProductListByRemark/:Remark", ProductController.ProductListByRemark);
+router.get("/ProductDetail/:ProductId", ProductController.ProductDetail);
+router.get("/ProductReviewList/:ProductId", ProductController.ProductReviewList);
 
-router.get("/five",adminController.create);
-router.get("/six",adminController.read);
-router.get("/seven",adminController.delete);
-router.get("/eight",adminController.update);
 
-router.get("/nine",subAdminController.create);
-router.get("/ten",subAdminController.read);
-router.get("/eleven",subAdminController.delete);
-router.get("/twelve",subAdminController.update);
+// user
+router.get("/UserOtp/:email", UserController.UserOtp);
+router.get("/VerifyOtp/:email/:otp", UserController.VerifyOtp);
+router.get("/UserLogOut",AuthVerification, UserController.UserLogOut);
+router.post("/CreateProfile",AuthVerification, UserController.CreateProfile);
+router.post("/UpdateProfile",AuthVerification, UserController.UpdateProfile);
+router.get("/ReadProfile",AuthVerification, UserController.ReadProfile);
 
-router.get("/thirteen",postController.create);
-router.get("/fourteen",postController.read);
-router.get("/fifteen",postController.delete);
-router.get("/sixteen",postController.update);
+// wish
+router.post("/SaveWishList",AuthVerification, WishListController.SaveWishList);
+router.post("/RemoveWishList",AuthVerification, WishListController.RemoveWishList);
+router.get("/WishList",AuthVerification, WishListController.WishList);
+
+
 
 module.exports = router;

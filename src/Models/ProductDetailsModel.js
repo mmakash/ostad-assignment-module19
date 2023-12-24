@@ -1,38 +1,21 @@
-const mongoose = require('mongoose');
+const moongose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-  store_id: {
-    type: String,
-    required: true,
-  },
-  store_passwd: {
-    type: String,
-    required: true,
-  },
-  currency: {
-    type: String,
-    required: true,
-  },
-  success_url: {
-    type: String,
-    required: true,
-  },
-  fail_url: {
-    type: String,
-    required: true,
-  },
-  cancel_url: {
-    type: String,
-    required: true,
-  },
-  ipn_url: {
-    type: String,
-    required: true,
-  },
-  init_url: {
-    type: String,
-    required: true,
-  },
-});
+const DataSchema = new moongose.Schema({
+   img1:{type: String, required: true},
+   img2:{type: String, required: true},
+   img3:{type: String, required: true},
+   img4:{type: String, required: true},
+   img5:{type: String},
+   img6:{type: String},
+   img7:{type: String},
+   img8:{type: String},
+   desc:{type: String},
+   color:{type: String},
+   size:{type: String},
+   productID:{type: moongose.Schema.Types.ObjectId, required: true},
+},
+{timestamps: true, versionKey: false}
+)
 
-module.exports = mongoose.model('productDetails', dataSchema)
+const ProductDetailsModel = moongose.model('productdetails', DataSchema);
+module.exports = ProductDetailsModel;

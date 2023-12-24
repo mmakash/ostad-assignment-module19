@@ -1,24 +1,13 @@
-const mongoose = require('mongoose');
+const moongose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-  productID: {
-    type: String,
-    required: true,
-  },
-  userID: {
-    type: String,
-    required: true,
-  },
-  des: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    required: true,
-    min: 1,
-    max: 5,
-  },
-});
+const DataSchema = new moongose.Schema({
+    productID: {type:moongose.Schema.Types.ObjectId, required: true},
+    userID: {type:moongose.Schema.Types.ObjectId, required: true},
+    desc: {type: String, required: true},
+    rating: {type: String, required: true}
+},
+{timestamps: true, versionKey: false}
+)
 
-module.exports = mongoose.model('review', dataSchema);
+const ReviewModel = moongose.model('reviews', DataSchema);
+module.exports = ReviewModel;

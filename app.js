@@ -1,26 +1,45 @@
-const express = require("express");
-const app = new express();
-const router = require("./src/Routes/api");
-// security middlewere import
-const rateLimit = require("express-rate-limit");
-const helmet = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
-const hpp = require("hpp");
-const cors = require("cors");
-// security middlewere implement
-app.use(cors());
-app.use(helmet());
-app.use(mongoSanitize());
-app.use(hpp());
-// express-rate-limit implemention
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
-app.use(limiter);
-app.use("/api", router);
-// undefined route handling
-app.use("*",(req,res) =>{
-    res.status(404).json({status:"fail",data:"Not found"});
-})
-module.exports = app;
+const express =require('express');
+const router =require('./src/routes/api.js');
+
+const app= new express();
+
+const rateLimit =require('express-rate-limit');
+const helmet =require('helmet');
+const mongoSanitize =require('express-mongo-sanitize');
+
+const xss =require('xss-clean');
+const hpp =require('hpp');
+const cors =require('cors');
+const cookieParser = require('cookie-parser');
+const mongoose =require('mongoose');
+
+
+
+  let url = "mongodb+srv://akash:akash123@cluster0.epuw6z9.mongodb.net/CRUD?retryWrites=true&w=majority"
+  // let options = {
+  //   user: "akash",
+  //   pass: "akash123",
+  // }
+  mongoose.connect(url).then(()=>{
+    console.log("DB Connected");
+  }).catch((e)=>{
+    console.log(e);
+  })
+
+app.use(cookieParser());
+app.use(cors())
+app.use(helmet())
+app.use(mongoSanitize())
+app.use(xss())
+app.use(hpp())
+
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
+
+const limiter= rateLimit({windowMs:15*60*1000,max:3000})
+app.use(limiter)
+
+app.use("/api/v1",router)
+ 
+module.exports=app;
