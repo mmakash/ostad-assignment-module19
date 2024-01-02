@@ -40,6 +40,12 @@ app.use(express.urlencoded({limit: '50mb'}));
 const limiter= rateLimit({windowMs:15*60*1000,max:3000})
 app.use(limiter)
 
-app.use("/api/v1",router)
+app.use("/api/v1",router);
+
+// connect with front-end
+app.use(express.static('./client/dist'));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+})
  
 module.exports=app;
